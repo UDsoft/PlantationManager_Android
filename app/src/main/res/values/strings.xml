@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Plantation Manager</string>
+    <string name="action_register_new_user">Register new user</string>
+    <string name="action_login_title">Login</string>
+    <string name="action_forgot_username_password">Forgot username/password</string>
+    <string name="action_password">Password</string>
+    <string name="action_email">Email</string>
+    <string name="action_first_name">First name</string>
+    <string name="action_last_name">Last name</string>
+    <string name="action_retype_password">Retype Password</string>
+    <string name="action_date_of_birth">Date of birth</string>
+    <string name="action_register">Register</string>
+    <string name="action_save">Save</string>
+    <string name="password_mismatch">password didn\'t match</string>
+    <string name="wrong_email">Wrong email</string>
+    <string name="is_empty">is empty</string>
+    <string name="error_password_length_short">password must be more than 5 characters</string>
+</resources>
