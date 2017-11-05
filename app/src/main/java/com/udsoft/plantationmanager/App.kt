@@ -13,11 +13,14 @@ val mainPrefs: MainPreferencs by lazy {
 
 class App : Application() {
     companion object {
+        private var instance: Application? = null
+        fun instance() = instance!!
         var mainPrefs: MainPreferencs? = null
     }
 
     override fun onCreate() {
         mainPrefs = MainPreferencs(applicationContext)
         super.onCreate()
+        instance = this
     }
 }

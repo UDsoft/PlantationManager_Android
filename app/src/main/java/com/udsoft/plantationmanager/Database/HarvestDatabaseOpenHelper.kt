@@ -2,20 +2,17 @@ package com.udsoft.plantationmanager.Database
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
+import com.udsoft.plantationmanager.App
 import org.jetbrains.anko.db.*
 
-class HarvestDatabaseOpenHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "HarvestDatabase", null, 1) {
+class HarvestDatabaseOpenHelper(ctx: Context = App.instance()) : ManagedSQLiteOpenHelper(ctx, DB_NAME, FACTORY, DB_VERSION) {
 
     companion object {
-        private var instance: HarvestDatabaseOpenHelper? = null
+        val instance by lazy { HarvestDatabaseOpenHelper() }
+        internal val DB_NAME = "PlantationManager.db"
+        internal val DB_VERSION = 1
+        internal val FACTORY = null
 
-        @Synchronized
-        fun getInstance(ctx: Context): HarvestDatabaseOpenHelper {
-            if (instance == null) {
-                instance = HarvestDatabaseOpenHelper(ctx.applicationContext)
-            }
-            return instance!!
-        }
     }
 
     override fun onCreate(db: SQLiteDatabase) {
@@ -32,7 +29,6 @@ class HarvestDatabaseOpenHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "Ha
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 
@@ -45,4 +41,4 @@ class HarvestDatabaseOpenHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "Ha
  *
  */
 val Context.harvestDB: HarvestDatabaseOpenHelper
-    get() = HarvestDatabaseOpenHelper.getInstance(applicationContext)
+    get() = HarvestDatabaseOpenHelper()
