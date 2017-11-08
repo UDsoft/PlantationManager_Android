@@ -15,4 +15,9 @@
     <string name="wrong_email">Wrong email</string>
     <string name="is_empty">is empty</string>
     <string name="error_password_length_short">password must be more than 5 characters</string>
+    <string name="txtHarvest">Harvest</string>
+    <string name="txtWeight">Weight</string>
+    <string name="txtPrice">Price</string>
+    <string name="txtHarvestValue">Harvest Value</string>
+
 </resources>

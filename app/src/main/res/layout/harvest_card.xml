@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardElevation="3dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/number_indicator"
+                android:layout_width="59dp"
+                android:layout_height="62dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/harvest_date_display"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:layout_marginTop="8dp"
+                android:text="date"
+                app:layout_constraintEnd_toEndOf="@+id/number_indicator"
+                app:layout_constraintStart_toStartOf="@+id/number_indicator"
+                app:layout_constraintTop_toBottomOf="@+id/number_indicator" />
+
+            <TextView
+                android:id="@+id/harvest_plantation_display"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="plantation"
+                app:layout_constraintEnd_toEndOf="@+id/harvest_date_display"
+                app:layout_constraintStart_toStartOf="@+id/harvest_date_display"
+                app:layout_constraintTop_toBottomOf="@+id/harvest_date_display" />
+
+            <TextView
+                android:id="@+id/harvest_weight_label"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="32dp"
+                android:text="@string/txtWeight"
+                app:layout_constraintStart_toEndOf="@+id/number_indicator"
+                app:layout_constraintTop_toTopOf="@+id/number_indicator" />
+
+            <TextView
+                android:id="@+id/harvest_weight_unit_display"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="4dp"
+                android:text="[T/M]"
+                app:layout_constraintEnd_toEndOf="@+id/harvest_weight_label"
+                app:layout_constraintStart_toStartOf="@+id/harvest_weight_label"
+                app:layout_constraintTop_toBottomOf="@+id/harvest_weight_label" />
+
+            <TextView
+                android:id="@+id/harvest_price_label_display"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="24dp"
+                android:text="@string/txtPrice"
+                app:layout_constraintBaseline_toBaselineOf="@+id/harvest_weight_label"
+                app:layout_constraintStart_toEndOf="@+id/harvest_weight_label" />
+
+            <TextView
+                android:id="@+id/price_unit_display"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="4dp"
+                android:text="[RM/T]"
+                app:layout_constraintEnd_toEndOf="@+id/harvest_price_label_display"
+                app:layout_constraintStart_toStartOf="@+id/harvest_price_label_display"
+                app:layout_constraintTop_toBottomOf="@+id/harvest_price_label_display" />
+
+            <TextView
+                android:id="@+id/harvest_value_label_display"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:text="@string/txtHarvestValue"
+                app:layout_constraintBaseline_toBaselineOf="@+id/harvest_price_label_display"
+                app:layout_constraintStart_toEndOf="@+id/harvest_price_label_display" />
+
+            <TextView
+                android:id="@+id/harvest_value_unit_display"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="[RM]"
+                app:layout_constraintBaseline_toBaselineOf="@+id/price_unit_display"
+                app:layout_constraintEnd_toEndOf="@+id/harvest_value_label_display"
+                app:layout_constraintStart_toStartOf="@+id/harvest_value_label_display" />
+
+            <TextView
+                android:id="@+id/harvest_weight_display"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="1,63"
+                app:layout_constraintEnd_toEndOf="@+id/harvest_weight_label"
+                app:layout_constraintStart_toStartOf="@+id/harvest_weight_label"
+                app:layout_constraintTop_toBottomOf="@+id/harvest_weight_unit_display" />
+
+            <TextView
+                android:id="@+id/harvest_price_display"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$520.00"
+                app:layout_constraintBaseline_toBaselineOf="@+id/harvest_weight_display"
+                app:layout_constraintEnd_toEndOf="@+id/harvest_price_label_display"
+                app:layout_constraintStart_toStartOf="@+id/harvest_price_label_display" />
+
+            <TextView
+                android:id="@+id/harvest_value_display"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:text="$847.50"
+                app:layout_constraintBaseline_toBaselineOf="@+id/harvest_price_display"
+                app:layout_constraintEnd_toEndOf="@+id/harvest_value_label_display"
+                app:layout_constraintStart_toStartOf="@+id/harvest_value_label_display" />
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

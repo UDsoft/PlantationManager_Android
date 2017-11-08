@@ -1,5 +1,8 @@
 package com.udsoft.plantationmanager.Activities
 
+import android.accounts.Account
+import android.accounts.AccountManager
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -141,6 +144,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
 
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.register_save -> {
@@ -155,6 +159,10 @@ class RegisterActivity : AppCompatActivity() {
                     mainPrefs.dob = newUser.dob
                     mainPrefs.password = newUser.password
                     mainPrefs.isLogged = true
+
+                    val account = Account(newUser.email, "user")
+                    val accountManager = AccountManager.get(applicationContext)
+                    accountManager.addAccountExplicitly(account, newUser.password, null)
 
                     //Todo : implement for Firebase.
 
