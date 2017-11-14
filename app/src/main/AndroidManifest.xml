@@ -12,17 +12,21 @@
         android:theme="@style/Plantation_Theme.NoActionBar">
         <activity
             android:name=".Activities.LoginActivity"
-            android:label="@string/action_login_title">
+            android:label="@string/action_login_title"></activity>
+        <activity
+            android:name=".Activities.RegisterActivity"
+            android:label="@string/action_register" />
+        <activity android:name=".Activities.HarvestActivity" />
+        <activity
+            android:name=".Activities.SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Activities.RegisterActivity"
-            android:label="@string/action_register"></activity>
-        <activity android:name=".HarvestActivity"></activity>
+        <activity android:name=".Activities.ProfileActivity"></activity>
     </application>
 
 </manifest>

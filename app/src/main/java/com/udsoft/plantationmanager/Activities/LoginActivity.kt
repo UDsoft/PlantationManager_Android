@@ -7,17 +7,25 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import com.google.firebase.auth.FirebaseAuth
 import com.udsoft.plantationmanager.R
 import kotlinx.android.synthetic.main.general_toolbar.*
 
 class LoginActivity : AppCompatActivity() {
 
     val loginButton = R.id.login_btn
+    lateinit var appAuth: FirebaseAuth
+
+    override fun onStart() {
+        super.onStart()
+        var currentUser = appAuth.currentUser
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_activity)
-
+        appAuth = FirebaseAuth.getInstance()
         //Theme Text color is black. Couldn't figure out how to change the title color using XML.
         // Changed it in code.
         //todo : How to implement toolbar title color change using xml

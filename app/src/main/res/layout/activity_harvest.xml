@@ -35,7 +35,7 @@
                     android:layout_width="360dp"
                     android:layout_height="250dp"
                     android:adjustViewBounds="false"
-                    android:background="@drawable/Harvest_Page"
+                    android:background="@drawable/harvest_page"
                     android:contentDescription="@string/txtHarvest"
                     android:cropToPadding="true"
                     android:fitsSystemWindows="true"
