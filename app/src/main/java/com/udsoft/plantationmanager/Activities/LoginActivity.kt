@@ -7,31 +7,69 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.Button
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.udsoft.plantationmanager.R
 import kotlinx.android.synthetic.main.general_toolbar.*
+import kotlinx.android.synthetic.main.login_content.*
+import org.jetbrains.anko.toast
 
 class LoginActivity : AppCompatActivity() {
 
-    val loginButton = R.id.login_btn
-    lateinit var appAuth: FirebaseAuth
-
-    override fun onStart() {
-        super.onStart()
-        var currentUser = appAuth.currentUser
-
-    }
+    val appAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_activity)
-        appAuth = FirebaseAuth.getInstance()
-        //Theme Text color is black. Couldn't figure out how to change the title color using XML.
-        // Changed it in code.
         //todo : How to implement toolbar title color change using xml
         login_toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(login_toolbar)
+        val loginBtn = findViewById<Button>(R.id.login_btn)
+        loginBtn.setOnClickListener { attemptlogin() }
+
     }
+
+
+    fun attemptlogin() {
+        val email = login_input_email.text.toString()
+        val password = login_input_password.text.toString()
+        if (handleError(email = email, password = password)) {
+            this.appAuth.signInWithEmailAndPassword(email, password).
+                    addOnCompleteListener { task: Task<AuthResult> ->
+                        if (task.isSuccessful) {
+                            val intentToProfile = Intent(this, ProfileActivity::class.java)
+                            startActivity(intentToProfile)
+                        } else {
+                            toast(getString(R.string.login_error))
+                        }
+                    }
+        }
+
+    }
+
+
+    private fun handleError(email: String, password: String): Boolean {
+        var isValidInput = true
+
+        if (email.isNullOrEmpty()) {
+            toast("${R.string.action_email} ${R.string.is_empty}")
+            isValidInput = false
+        } else {
+            if (android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                toast(getString(R.string.invalid_email))
+                isValidInput = false
+            }
+        }
+        if (password.isNullOrEmpty()) {
+            toast("${R.string.action_password} ${R.string.is_empty}")
+            isValidInput = false
+        }
+
+        return isValidInput
+    }
+
 
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

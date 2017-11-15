@@ -3,7 +3,10 @@ package com.udsoft.plantationmanager.Activities
 import android.accounts.Account
 import android.accounts.AccountManager
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
@@ -11,15 +14,20 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toast
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.*
 import com.udsoft.plantationmanager.Database.user
 import com.udsoft.plantationmanager.R
 import com.udsoft.plantationmanager.mainPrefs
+import kotlinx.android.synthetic.main.login_content.*
 import kotlinx.android.synthetic.main.register_activity.*
+import org.jetbrains.anko.toast
 
 class RegisterActivity : AppCompatActivity() {
 
     private val TAG: String = "RegisterActivity_Class"
 
+    val appAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +35,13 @@ class RegisterActivity : AppCompatActivity() {
         toolbar_register.setTitleTextColor(Color.WHITE)
         setSupportActionBar(toolbar_register)
         btn_dob_calender.setOnClickListener { }
+        isNetworkAvailable()
+    }
+
+    private fun isNetworkAvailable(): Boolean {
+        val connectivityManager: ConnectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetworkInfo = connectivityManager.activeNetworkInfo
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -54,8 +69,6 @@ class RegisterActivity : AppCompatActivity() {
         val retypePassword: String = input_retype_password_register.text.toString()
         val dob: String = show_dob.text.toString()
 
-        fun errorToast(message: CharSequence) =
-                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
         /**
          * Rules
@@ -69,23 +82,23 @@ class RegisterActivity : AppCompatActivity() {
         fun isContentEmpty(): Boolean {
             when {
                 firstName.isNullOrEmpty() -> {
-                    errorToast("${getString(R.string.action_first_name)} $generalEmptyErrorMessage")
+                    toast("${getString(R.string.action_first_name)} $generalEmptyErrorMessage")
                     return true
                 }
                 lastName.isNullOrEmpty() -> {
-                    errorToast("${getString(R.string.action_last_name)} $generalEmptyErrorMessage")
+                    toast("${getString(R.string.action_last_name)} $generalEmptyErrorMessage")
                     return true
                 }
                 email.isNullOrEmpty() -> {
-                    errorToast("${getString(R.string.action_email)} $generalEmptyErrorMessage")
+                    toast("${getString(R.string.action_email)} $generalEmptyErrorMessage")
                     return true
                 }
                 password.isNullOrEmpty() -> {
-                    errorToast("${getString(R.string.action_password)} $generalEmptyErrorMessage")
+                    toast("${getString(R.string.action_password)} $generalEmptyErrorMessage")
                     return true
                 }
                 dob.isNullOrEmpty() -> {
-                    errorToast("${getString(R.string.action_date_of_birth)} $generalEmptyErrorMessage")
+                    toast("${getString(R.string.action_date_of_birth)} $generalEmptyErrorMessage")
                     return true
                 }
                 else -> return false
@@ -101,7 +114,7 @@ class RegisterActivity : AppCompatActivity() {
 
             when {
                 !password.equals(retypePassword) -> {
-                    errorToast(getString(R.string.password_mismatch))
+                    toast(getString(R.string.password_mismatch))
                     register_password_box.error = getString(R.string.password_mismatch)
                     register_retype_password_box.error = getString(R.string.password_mismatch)
                     Log.d(TAG, "Password didn't match Retype password")
@@ -109,7 +122,7 @@ class RegisterActivity : AppCompatActivity() {
                 }
 
                 password.length < 6 -> {
-                    errorToast(getString(R.string.error_password_length_short))
+                    toast(getString(R.string.error_password_length_short))
                     register_password_box.error = getString(R.string.error_password_length_short)
                     Log.d(TAG, "Password length less than 6")
                     return false
@@ -129,7 +142,7 @@ class RegisterActivity : AppCompatActivity() {
             }
         //2. check for invalid email format
             !isEmailValid() -> {
-                errorToast(getString(R.string.wrong_email))
+                toast(getString(R.string.wrong_email))
                 Log.d(TAG, "Email is not right format")
                 return null
             }
@@ -150,21 +163,22 @@ class RegisterActivity : AppCompatActivity() {
             R.id.register_save -> {
                 var newUser = validateUserInput()
                 if (newUser != null) {
+                    appAuth.createUserWithEmailAndPassword(newUser.email, newUser.password).addOnCompleteListener { task: Task<AuthResult> ->
 
-                    //Save in preference
-                    //Todo:startActivity Home after register and main preference isLogin verified
-                    mainPrefs.firstname = newUser.firstName
-                    mainPrefs.lastname = newUser.lastName
-                    mainPrefs.email = newUser.email
-                    mainPrefs.dob = newUser.dob
-                    mainPrefs.password = newUser.password
-                    mainPrefs.isLogged = true
+                        if (task.isSuccessful) {
+                            Log.d(TAG, "createdUserWuthEmail::success")
+                            var user: FirebaseUser = appAuth.currentUser!!
+                            var intentToProfile = Intent(applicationContext, ProfileActivity::class.java)
+                            startActivity(intentToProfile)
+                        } else {
+                            val error = task.exception
+                            if (error is FirebaseAuthUserCollisionException) {
+                                toast("Error: User exist")
+                                //todo: forget password
+                            }
 
-                    val account = Account(newUser.email, "user")
-                    val accountManager = AccountManager.get(applicationContext)
-                    accountManager.addAccountExplicitly(account, newUser.password, null)
-
-                    //Todo : implement for Firebase.
+                        }
+                    }
 
                 }
 

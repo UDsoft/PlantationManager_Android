@@ -35,7 +35,7 @@ class SplashActivity : AppCompatActivity() {
         } else {
             val profileScreenIntent = Intent(this, ProfileActivity::class.java)
             Log.d(TAG, "starting to got profile")
-            //startActivity(profileScreenIntent)
+            startActivity(profileScreenIntent)
         }
 
     }

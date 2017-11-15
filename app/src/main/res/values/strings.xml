@@ -19,5 +19,7 @@
     <string name="txtWeight">Weight</string>
     <string name="txtPrice">Price</string>
     <string name="txtHarvestValue">Harvest Value</string>
+    <string name="invalid_email">Insert valid email!</string>
+    <string name="login_error">Login Error</string>
 
 </resources>
