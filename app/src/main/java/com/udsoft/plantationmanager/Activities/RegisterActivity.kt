@@ -1,8 +1,5 @@
 package com.udsoft.plantationmanager.Activities
 
-import android.accounts.Account
-import android.accounts.AccountManager
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -13,13 +10,10 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.Toast
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.*
-import com.udsoft.plantationmanager.Database.user
+import com.udsoft.plantationmanager.Models.user
 import com.udsoft.plantationmanager.R
-import com.udsoft.plantationmanager.mainPrefs
-import kotlinx.android.synthetic.main.login_content.*
 import kotlinx.android.synthetic.main.register_activity.*
 import org.jetbrains.anko.toast
 
@@ -34,9 +28,14 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.register_activity)
         toolbar_register.setTitleTextColor(Color.WHITE)
         setSupportActionBar(toolbar_register)
-        btn_dob_calender.setOnClickListener { }
-        isNetworkAvailable()
+        btn_dob_calender.setOnClickListener { showDatePickerDialog() }
+        TODO("ensure internet is checked and registration only happen if internet is available.")
     }
+
+    private fun showDatePickerDialog() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
 
     private fun isNetworkAvailable(): Boolean {
         val connectivityManager: ConnectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

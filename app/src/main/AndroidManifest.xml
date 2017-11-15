@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -15,7 +14,7 @@
         android:theme="@style/Plantation_Theme.NoActionBar">
         <activity
             android:name=".Activities.LoginActivity"
-            android:label="@string/action_login_title"></activity>
+            android:label="@string/action_login_title" />
         <activity
             android:name=".Activities.RegisterActivity"
             android:label="@string/action_register" />
@@ -29,7 +28,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.ProfileActivity"></activity>
+        <activity android:name=".Activities.ProfileActivity" />
+        <activity
+            android:name=".Activities.AddHarvest"
+            android:label="@string/new_harvest"></activity>
     </application>
 
 </manifest>

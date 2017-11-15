@@ -24,8 +24,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_activity)
         //todo : How to implement toolbar title color change using xml
-        login_toolbar.setTitleTextColor(Color.WHITE);
-        setSupportActionBar(login_toolbar)
+        general_toolbar.setTitleTextColor(Color.WHITE);
+        setSupportActionBar(general_toolbar)
         val loginBtn = findViewById<Button>(R.id.login_btn)
         loginBtn.setOnClickListener { attemptlogin() }
 

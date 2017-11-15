@@ -21,5 +21,6 @@
     <string name="txtHarvestValue">Harvest Value</string>
     <string name="invalid_email">Insert valid email!</string>
     <string name="login_error">Login Error</string>
+    <string name="new_harvest">New Harvest</string>
 
 </resources>
