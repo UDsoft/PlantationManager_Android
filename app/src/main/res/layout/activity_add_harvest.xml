@@ -23,7 +23,7 @@
             android:id="@+id/input_harverst_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Harvest Date"
+            android:hint="@string/harvest_date"
             android:inputType="date"
             android:singleLine="true" />
     </android.support.design.widget.TextInputLayout>
@@ -52,7 +52,7 @@
             android:id="@+id/input_harvest_weight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Weight"
+            android:hint="@string/txtWeight"
             android:inputType="numberDecimal"
             android:singleLine="true" />
     </android.support.design.widget.TextInputLayout>
