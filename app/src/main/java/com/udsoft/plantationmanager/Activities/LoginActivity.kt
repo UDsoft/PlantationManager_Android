@@ -29,6 +29,11 @@ class LoginActivity : AppCompatActivity() {
         val loginBtn = findViewById<Button>(R.id.login_btn)
         loginBtn.setOnClickListener { attemptlogin() }
 
+
+        //todo : only temporary intent... Please Remove
+        val tempTest = Intent(this, AddHarvest::class.java)
+        startActivity(tempTest)
+
     }
 
 

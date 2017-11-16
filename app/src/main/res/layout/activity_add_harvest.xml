@@ -98,7 +98,7 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/textInputLayout11"
+        android:id="@+id/input_transportation_cost_box"
         android:layout_width="0dp"
         android:layout_height="57dp"
         android:layout_marginEnd="8dp"
@@ -127,9 +127,9 @@
         android:textOff=" without transportation expenses"
         android:textOn="with transportation expenses"
         android:theme="@style/SwitchTheme"
-        app:layout_constraintBottom_toBottomOf="@+id/textInputLayout11"
+        app:layout_constraintBottom_toBottomOf="@+id/input_transportation_cost_box"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textInputLayout11" />
+        app:layout_constraintTop_toTopOf="@+id/input_transportation_cost_box" />
 
     <TextView
         android:id="@+id/label_new_harverst_transportation_expenses"
@@ -139,13 +139,14 @@
         android:layout_marginTop="8dp"
         android:text="Transportation Expenses :"
         android:textSize="18sp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/switch_harvest_transportation_expenses"
         app:layout_constraintEnd_toStartOf="@+id/switch_harvest_transportation_expenses"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/switch_harvest_transportation_expenses" />
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/textInputLayout12"
+        android:id="@+id/input_labour_cost_box"
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:layout_marginEnd="8dp"
@@ -153,7 +154,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toStartOf="@+id/switch_harvest_labour_cost"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout11">
+        app:layout_constraintTop_toBottomOf="@+id/input_transportation_cost_box">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/input_harvest_labour_cost"
@@ -175,9 +176,9 @@
         android:textOff="without labour cost"
         android:textOn="with labout cost"
         android:theme="@style/SwitchTheme"
-        app:layout_constraintBottom_toBottomOf="@+id/textInputLayout12"
+        app:layout_constraintBottom_toBottomOf="@+id/input_labour_cost_box"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textInputLayout12" />
+        app:layout_constraintTop_toTopOf="@+id/input_labour_cost_box" />
 
     <TextView
         android:id="@+id/label_harvest_labour_cost"
@@ -187,12 +188,13 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Labour Cost"
+        android:text="Labour Cost :"
+        android:visibility="invisible"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textInputLayout12"
+        app:layout_constraintBottom_toBottomOf="@+id/input_labour_cost_box"
         app:layout_constraintEnd_toStartOf="@+id/switch_harvest_labour_cost"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textInputLayout12" />
+        app:layout_constraintTop_toTopOf="@+id/input_labour_cost_box" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_harvest_save"
